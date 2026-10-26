@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lunar-qr.workers.dev/sitemap-index.xml

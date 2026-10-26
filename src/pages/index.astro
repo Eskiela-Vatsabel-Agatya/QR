@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { lead, WHATSAPP_URL, MAIN_SITE_URL, SITE_URL } from '../config/site';
+const faq: [string, string][] = [
+ ['Apakah gratis?', 'Ya, alat ini gratis dan tanpa daftar.'],
+ ['Apakah QR-nya kedaluwarsa?', 'Tidak. QR statis menyimpan tujuan langsung di dalam kode, jadi tidak ada masa berlaku dari alat ini.'],
+ ['Apakah datanya disimpan?', 'Tidak. Semua diproses di browsermu dan hilang saat halaman dimuat ulang. Lihat halaman privasi.'],
+ ['Bagaimana memastikan QR bisa dipindai?', 'Pakai warna kontras tinggi, cetak minimal 2 x 2 cm, dan coba pindai dulu sebelum dicetak banyak.'],
+ ['Bisa diubah tujuannya setelah dicetak?', 'Tidak. Itu sifat QR statis. Kamu harus membuat kode baru.'],
+ ['Kenapa ada batas untuk logo di tengah?', 'Logo menutupi sebagian kode. Karena itu ukurannya dibatasi dan koreksi kesalahan dinaikkan agar kode tetap terbaca.'],
+];
+const ld = { '@context': 'https://schema.org', '@type': 'WebApplication', name: 'LunAR QR', url: SITE_URL, description: 'Pembuat kode QR gratis yang berjalan sepenuhnya di browser.', applicationCategory: 'UtilitiesApplication', operatingSystem: 'Any', inLanguage: 'id', offers: { '@type': 'Offer', price: '0', priceCurrency: 'IDR' }, publisher: { '@type': 'Organization', name: 'LunAR', url: MAIN_SITE_URL } };
+---
+<Base title="Buat QR Code Gratis dan Privat | LunAR QR" description="Buat kode QR gratis langsung di browser. Tanpa daftar, tanpa pelacakan, tidak ada data yang keluar dari perangkatmu.">
+<script type="application/ld+json" set:html={JSON.stringify(ld)} is:inline></script>
+<section><h1>Buat kode QR gratis, tanpa data keluar dari perangkatmu.</h1>
+<p>Semua terjadi di browsermu. Tanpa daftar, tanpa pelacakan.</p>
+<ul class="chips"><li>Diproses di perangkatmu</li><li>Tanpa daftar</li><li>Tanpa pelacakan</li></ul></section>
+<noscript><p class="card">Pembuat QR ini butuh JavaScript agar bisa bekerja langsung di perangkatmu.</p></noscript>
+<section class="tool" aria-label="Pembuat QR">
+<div class="panel" id="controls">
+ <label for="type">Jenis isi</label>
+ <select id="type"><option value="url">Tautan</option><option value="text">Teks</option><option value="wa">WhatsApp</option><option value="wifi">Wi-Fi</option></select>
+ <div data-t="url"><label for="url">Tautan</label><input type="text" id="url" inputmode="url" autocomplete="off" placeholder="contoh.com"></div>
+ <div data-t="text" hidden><label for="text">Teks</label><textarea id="text" rows="4" maxlength="1000"></textarea><small id="count">0 / 1000</small></div>
+ <div data-t="wa" hidden><label for="wa-n">Nomor WhatsApp</label><input type="tel" id="wa-n" placeholder="0812 3456 7890"><label for="wa-m">Pesan (opsional)</label><input type="text" id="wa-m"></div>
+ <div data-t="wifi" hidden><label for="w-s">Nama Wi-Fi (SSID)</label><input type="text" id="w-s" autocomplete="off"><label for="w-p">Kata sandi</label><input type="password" id="w-p" autocomplete="off"><small>Kata sandi tetap di browsermu dan hanya masuk ke dalam kode QR.</small>
+  <label for="w-t">Keamanan</label><select id="w-t"><option value="WPA">WPA/WPA2/WPA3</option><option value="WEP">WEP</option><option value="nopass">Tanpa kata sandi</option></select><label class="chk"><input type="checkbox" id="w-h"> Jaringan tersembunyi</label></div>
+ <p class="msg" id="msg" aria-live="polite"></p>
+ <div class="row"><div><label for="fg">Warna kode</label><input type="text" id="fg" value="#0B1220"></div><div><label for="bg">Warna latar</label><input type="text" id="bg" value="#FFFFFF"></div></div>
+ <div class="sw" id="sw"></div><label class="chk"><input type="checkbox" id="tr"> Latar transparan</label>
+ <div class="row"><div><label for="shape">Bentuk modul</label><select id="shape"><option value="square">Persegi</option><option value="rounded">Membulat</option><option value="dots">Titik</option></select></div>
+ <div><label for="corner">Bentuk sudut</label><select id="corner"><option value="square">Persegi</option><option value="rounded">Membulat</option></select></div>
+ <div><label for="frame">Bingkai</label><select id="frame"><option value="none">Tanpa bingkai</option><option value="bar">Bar bawah</option><option value="box">Label atas</option></select></div></div>
+ <label for="label">Label bingkai</label><input type="text" id="label" value="PINDAI SAYA" maxlength="20">
+ <label for="logo">Logo di tengah (opsional)</label><input type="file" id="logo" accept="image/png,image/jpeg,image/webp"><div class="row"><select id="mask" aria-label="Bentuk logo"><option value="square">Persegi</option><option value="circle">Bulat</option></select><button class="btn alt" type="button" id="rm" hidden>Hapus logo</button></div>
+ <p class="msg" id="ecc">Koreksi kesalahan: M</p>
+ <button class="btn alt" type="button" id="reset">Reset</button>
+</div>
+<div class="prev"><div class="sticker"><div id="preview" role="img" aria-label="Pratinjau kode QR"><span>Isi data untuk melihat kode.</span></div></div>
+ <p class="msg" id="pmsg" aria-live="polite"></p>
+ <div class="row"><select id="size" aria-label="Ukuran PNG"><option>512</option><option selected>1024</option><option>2048</option></select><button class="btn" id="png" type="button" disabled>Unduh PNG</button><button class="btn alt" id="svg" type="button" disabled>Unduh SVG</button></div>
+ <p><small>Cetak minimal 2 x 2 cm dan coba pindai dulu sebelum dicetak banyak.</small></p>
+ <div class="card" id="after" hidden><p>Mau produkmu bisa dilihat dalam AR sebelum dibeli? Lihat karya LunAR.</p><a class="btn" href={lead('after-download')} rel="noopener noreferrer" referrerpolicy="no-referrer">Kenali LunAR</a> <button class="btn alt" type="button" id="close">Tutup</button></div>
+</div></section>
+<h2>Kenapa aman?</h2><ul><li>Tidak ada yang diunggah. Semuanya diproses di browsermu.</li><li>Tanpa cookie dan tanpa pelacak.</li><li>Logo yang kamu pasang dikodekan ulang di perangkat, jadi data tersembunyi seperti GPS hilang.</li><li>Kode ini statis, jadi tidak ada yang bisa melihat atau menghitung pindaian.</li></ul><p><a href="/privasi">Baca cara memverifikasinya</a></p>
+<h2>QR statis, apa artinya?</h2><p>Tujuan ditulis langsung di dalam kode, jadi tidak pernah kedaluwarsa dan tidak ada yang bisa menggantinya. Tapi kamu juga tidak bisa mengubahnya setelah dicetak, dan tidak ada penghitung pindaian.</p>
+<section class="card lead"><h3>Tentang LunAR</h3><p>LunAR adalah agensi teknologi kreatif di Surakarta yang mengubah produk fisik menjadi pengalaman AR dan 3D interaktif, terutama untuk bisnis furnitur dan perlengkapan rumah.</p>
+<a class="btn" href={lead('home-card')} rel="noopener noreferrer" referrerpolicy="no-referrer">Kunjungi LunAR</a> <a class="btn wa" href={WHATSAPP_URL} rel="noopener noreferrer" referrerpolicy="no-referrer">Chat WhatsApp</a></section>
+<h2>Pertanyaan umum</h2><p class="hint">Ketuk pertanyaan untuk melihat jawabannya.</p>{faq.map(([q, a]) => <details><summary>{q}</summary><p>{a}</p></details>)}
+<script>import '../lib/qr/ui';</script>
+</Base>

@@ -1,0 +1,23 @@
+---
+import '../styles/app.css';
+import logo from '../assets/brand/lunar-logo-horizontal.svg?raw';
+import stacked from '../assets/brand/lunar-logo-stacked.svg?raw';
+import { SITE_URL, NAME, lead, WHATSAPP_URL, WHATSAPP_LABEL, INSTAGRAM_URL } from '../config/site';
+const { title, description, path = '/' } = Astro.props;
+const url = new URL(path, SITE_URL).href;
+---
+<!doctype html>
+<html lang="id"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{title}</title><meta name="description" content={description}>
+<link rel="canonical" href={url}><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:type" content="website"><meta property="og:title" content={title}><meta property="og:description" content={description}>
+<meta property="og:url" content={url}><meta property="og:image" content={new URL('/og-image.png', SITE_URL).href}><meta property="og:locale" content="id_ID">
+<meta name="twitter:card" content="summary_large_image">
+</head><body>
+<header class="top"><a href="/" aria-label={`${NAME}, beranda`}><span class="logo" role="img" aria-label="LunAR" set:html={logo} /></a>
+<a href={lead('header')} rel="noopener noreferrer" referrerpolicy="no-referrer">Tentang LunAR</a></header>
+<main class="wrap"><slot /></main>
+<footer><div><span class="logo stack" role="img" aria-label="LunAR" set:html={stacked} /><br><em>see it. place it. love it.</em></div>
+<nav aria-label="Tautan"><a href="/privasi">Privasi</a> · <a href={lead('footer')} rel="noopener noreferrer" referrerpolicy="no-referrer">LunAR</a> · <a href={WHATSAPP_URL} rel="noopener noreferrer" referrerpolicy="no-referrer">WhatsApp {WHATSAPP_LABEL}</a> · <a href={INSTAGRAM_URL} rel="noopener noreferrer" referrerpolicy="no-referrer">Instagram</a></nav>
+<small>© LunAR</small></footer></body></html>

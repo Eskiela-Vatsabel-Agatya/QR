@@ -1,0 +1,6 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lunar-qr", // VERIFY: must equal the Worker name created in the dashboard
+  "compatibility_date": "2026-10-26",
+  "assets": { "directory": "./dist", "not_found_handling": "404-page" }
+}

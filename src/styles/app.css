@@ -1,0 +1,62 @@
+@import '@fontsource/plus-jakarta-sans/latin-400.css';
+@import '@fontsource/plus-jakarta-sans/latin-700.css';
+/* Tokens. Brand ramp from #2A57FF (Option A). Ink = navy, never an accent fill. Run `npm run contrast`. */
+:root{
+ --brand-50:#EEF2FF;--brand-100:#DDE5FF;--brand-200:#BBCBFF;--brand-500:#2A57FF;--brand-600:#2A57FF;--brand-700:#1E42D6;--brand-900:#0B1220;
+ --ink:#0B1220;--muted:#3F4A5E;--surface:#E8ECF3;--tile:#FFFFFF;
+ --border-control:#6B7A96;--error:#B42318;--warn:#8A5A00;--wa:#0F7A3D;
+ --sh-light:rgba(255,255,255,.9);--sh-dark:rgba(150,165,190,.38);
+ --raised:6px 6px 20px var(--sh-dark),-6px -6px 20px var(--sh-light);
+ --raised-sm:4px 4px 12px var(--sh-dark),-4px -4px 12px var(--sh-light);
+ --inset:inset 4px 4px 12px var(--sh-dark),inset -4px -4px 12px var(--sh-light);
+ --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s8:32px;--s10:40px;--r:16px;
+ --fs-s:14px;--fs-b:16px;--fs-m:20px;--fs-l:32px;--fs-xl:42px;--fs-xxl:64px;
+ font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);background:var(--surface);font-size:var(--fs-b);line-height:1.6}
+a{color:var(--brand-700)}:focus-visible{outline:3px solid var(--brand-600);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 var(--s5)}
+header.top,footer{display:flex;justify-content:space-between;align-items:center;gap:var(--s3);padding:var(--s4) var(--s5);max-width:1040px;margin:0 auto}
+.logo{display:inline-block;line-height:0}.logo svg{height:36px;width:auto;display:block}.logo.stack svg{height:64px}
+h1{font-size:var(--fs-xl);line-height:1.15;letter-spacing:-.03em;margin:var(--s3) 0}
+@media(min-width:860px){h1{font-size:var(--fs-xxl)}}
+h2{font-size:var(--fs-l);line-height:1.15;letter-spacing:-.02em;margin:var(--s10) 0 var(--s4)}
+h3{font-size:var(--fs-m);margin:0 0 var(--s2)}
+small,.msg,label,.chips li,footer{font-size:var(--fs-s)}
+.chips{display:flex;flex-wrap:wrap;gap:var(--s3);padding:0;list-style:none}
+.chips li{background:var(--surface);box-shadow:var(--raised-sm);padding:var(--s2) var(--s4);border-radius:99px;font-weight:700}
+/* Raised containers + inset wells; controls stay flat with a real 1px border (design.md soft-UI variant). */
+.tool{display:grid;gap:var(--s8);margin:var(--s8) 0}
+@media(min-width:860px){.tool{grid-template-columns:1fr 360px}.prev{position:sticky;top:var(--s3);align-self:start}}
+.panel,.card,.sticker{background:var(--surface);border-radius:var(--r);box-shadow:var(--raised);padding:var(--s6)}
+.well{background:var(--surface);border-radius:var(--r);box-shadow:var(--inset);padding:var(--s4)}
+label{display:block;font-weight:700;margin:var(--s3) 0 var(--s1)}
+input[type=text],input[type=tel],input[type=password],input[type=file],select,textarea{width:100%;min-height:44px;padding:var(--s3) var(--s4);border:1px solid var(--border-control);border-radius:12px;font:inherit;background:var(--tile);color:var(--ink)}
+input:hover,select:hover,textarea:hover{border-color:var(--ink)}
+input:focus-visible,select:focus-visible,textarea:focus-visible{border-color:var(--brand-600)}
+.row{display:flex;flex-wrap:wrap;gap:var(--s3)}.row>*{flex:1 1 140px}
+.chk{display:flex;align-items:center;gap:var(--s2);font-weight:400;min-height:44px}.chk input{width:24px;height:24px}
+/* Buttons: flat, high contrast, 1px+ border, 16/32 padding ratio. */
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:var(--s3) var(--s8);border-radius:12px;border:1px solid var(--brand-700);background:var(--brand-600);color:#fff;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--brand-700)}.btn:active{background:var(--ink);border-color:var(--ink)}
+.btn.alt{background:var(--tile);color:var(--brand-700);border:1px solid var(--brand-700)}.btn.alt:hover{background:var(--brand-50)}.btn.alt:active{background:var(--brand-100)}
+.btn.wa{background:var(--wa);border-color:var(--wa)}.btn.wa:hover{filter:brightness(.9)}
+.btn[disabled]{background:var(--surface);color:#5A6478;border-color:var(--border-control);cursor:not-allowed;box-shadow:var(--inset)}
+.sw{display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s2)}.sw button{width:44px;height:44px;border-radius:50%;border:1px solid var(--border-control);cursor:pointer;box-shadow:var(--raised-sm)}.sw button:active{box-shadow:var(--inset)}
+/* The QR tile is flat: no shadow on anything that must scan. */
+#preview{min-height:240px;display:grid;place-items:center;background:var(--tile);border:1px solid var(--border-control);border-radius:12px;padding:var(--s4)}
+#preview svg{width:100%;height:auto;max-width:300px}
+.board{background-image:linear-gradient(45deg,#d5dae3 25%,transparent 25%,transparent 75%,#d5dae3 75%),linear-gradient(45deg,#d5dae3 25%,transparent 25%,transparent 75%,#d5dae3 75%);background-size:16px 16px;background-position:0 0,8px 8px}
+.msg{min-height:var(--s6);margin:var(--s2) 0;color:var(--muted)}.msg.e{color:var(--error);font-weight:700}.msg.w{color:var(--warn);font-weight:700}
+.card.lead{background:var(--surface)}
+[hidden]{display:none!important}
+details{background:var(--surface);box-shadow:var(--raised-sm);border-radius:12px;padding:var(--s2) var(--s4);margin-bottom:var(--s4)}
+summary{font-weight:700;cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:var(--s4);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'';flex:none;width:36px;height:36px;border-radius:50%;border:1px solid var(--border-control);background:var(--tile) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E42D6' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center/20px no-repeat;transition:transform .2s}
+summary:hover{color:var(--brand-700)}summary:hover::after{border-color:var(--brand-700)}
+details[open] summary::after{transform:rotate(180deg)}
+details[open]{box-shadow:var(--inset)}details p{margin:0 0 var(--s3)}
+.hint{color:var(--muted);font-size:var(--fs-s);margin:0 0 var(--s4)}
+footer{flex-wrap:wrap;margin-top:var(--s10);color:var(--muted)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
