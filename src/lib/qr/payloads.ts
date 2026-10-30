@@ -7,7 +7,7 @@ export function buildUrl(raw: string): Result {
   let u: URL;
   try { u = new URL(s); } catch { return err('Tautan tidak valid.'); }
   if (u.protocol !== 'http:' && u.protocol !== 'https:') return err('Hanya tautan http:// atau https:// yang diterima.');
-  return { ok: true, value: s, warn: s.length > 300 ? 'URL panjang membuat kode lebih padat dan lebih sulit dipindai.' : undefined };
+  return { ok: true, value: s, warn: s.length > 1000 ? 'URL panjang membuat kode lebih padat dan lebih sulit dipindai.' : undefined };
 }
 export const buildText = (raw: string): Result => (raw ? { ok: true, value: raw } : err('Masukkan teks.'));
 export function normalizePhone(raw: string): string {

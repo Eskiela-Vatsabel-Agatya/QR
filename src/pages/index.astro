@@ -22,7 +22,7 @@ const ld = { '@context': 'https://schema.org', '@type': 'WebApplication', name: 
  <label for="type">Jenis isi</label>
  <select id="type"><option value="url">Tautan</option><option value="text">Teks</option><option value="wa">WhatsApp</option><option value="wifi">Wi-Fi</option></select>
  <div data-t="url"><label for="url">Tautan</label><input type="text" id="url" inputmode="url" autocomplete="off" placeholder="contoh.com"></div>
- <div data-t="text" hidden><label for="text">Teks</label><textarea id="text" rows="4" maxlength="1000"></textarea><small id="count">0 / 1000</small></div>
+ <div data-t="text" hidden><label for="text">Teks</label><textarea id="text" rows="4" maxlength="2000"></textarea><small id="count">0 / 2000</small></div>
  <div data-t="wa" hidden><label for="wa-n">Nomor WhatsApp</label><input type="tel" id="wa-n" placeholder="0812 3456 7890"><label for="wa-m">Pesan (opsional)</label><input type="text" id="wa-m"></div>
  <div data-t="wifi" hidden><label for="w-s">Nama Wi-Fi (SSID)</label><input type="text" id="w-s" autocomplete="off"><label for="w-p">Kata sandi</label><input type="password" id="w-p" autocomplete="off"><small>Kata sandi tetap di browsermu dan hanya masuk ke dalam kode QR.</small>
   <label for="w-t">Keamanan</label><select id="w-t"><option value="WPA">WPA/WPA2/WPA3</option><option value="WEP">WEP</option><option value="nopass">Tanpa kata sandi</option></select><label class="chk"><input type="checkbox" id="w-h"> Jaringan tersembunyi</label></div>

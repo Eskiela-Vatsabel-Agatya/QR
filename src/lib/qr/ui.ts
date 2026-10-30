@@ -21,7 +21,7 @@ function say(id: string, text: string, cls = '') { const e = $(id); e.textConten
 
 function update() {
   document.querySelectorAll<HTMLElement>('[data-t]').forEach((d) => (d.hidden = d.dataset.t !== val('type')));
-  $('count').textContent = `${val('text').length} / 1000`;
+  $('count').textContent = `${val('text').length} / 2000`;
   const p = payload(), prev = $('preview'), tr = $<HTMLInputElement>('tr').checked;
   prev.classList.toggle('board', tr);
   ['png', 'svg'].forEach((b) => ($<HTMLButtonElement>(b).disabled = true));
